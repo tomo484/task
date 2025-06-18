@@ -27,18 +27,7 @@ const formatDueDate = (dueDate: string) => {
   return `Due: ${date.getMonth() + 1}/${date.getDate()}`;
 };
 
-const getStatusLabel = (status: TaskStatus) => {
-  switch (status) {
-    case 'todo':
-      return 'To Do';
-    case 'in_progress':
-      return 'In Progress';
-    case 'done':
-      return 'Done';
-    default:
-      return status;
-  }
-};
+
 
 const getNextStatusLabel = (status: TaskStatus) => {
   switch (status) {

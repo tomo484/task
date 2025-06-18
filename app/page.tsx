@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Header } from '@/components/layout/Header';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { ProgressSection } from '@/components/ui/ProgressSection';
-import { TabNavigation, defaultTabs } from '@/components/ui/TabNavigation';
+import { TabNavigation } from '@/components/ui/TabNavigation';
 import { TaskList } from '@/components/tasks/TaskList';
 import { BottomTabNavigation } from '@/components/ui/BottomTabNavigation';
 import { TaskAddModal } from '@/components/tasks/TaskAddModal';
@@ -46,7 +46,7 @@ export default function HomePage() {
 
   useEffect(() => {
     fetchTasks();
-  }, [activeTab]);
+  }, [activeTab]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // プログレス計算
   const progressPercentage = calculateProgress(activeTab === 'today' ? tasks : weeklyTasks);

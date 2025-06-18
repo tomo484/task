@@ -205,7 +205,7 @@ export async function updateTask(taskId: string, taskInput: Partial<TaskInput>):
 // データベース接続テスト
 export async function testDatabaseConnection(): Promise<boolean> {
   try {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('tasks')
       .select('count')
       .limit(1)

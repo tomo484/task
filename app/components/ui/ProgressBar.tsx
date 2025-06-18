@@ -29,16 +29,22 @@ Progress.displayName = "Progress"
 
 interface ProgressBarProps {
   percentage: number;
+  showText?: boolean;
+  className?: string;
 }
 
-export function ProgressBar({ percentage }: ProgressBarProps) {
+export function ProgressBar({ percentage, showText = true, className }: ProgressBarProps) {
+  if (!showText) {
+    return <Progress value={percentage} className={className || "h-2"} />;
+  }
+
   return (
     <div className="space-y-2">
       <div className="flex justify-between items-center">
         <span className="text-sm font-medium text-[#4A739C] font-lexend">Progress</span>
         <span className="text-sm font-bold text-[#0D141C] font-lexend">{percentage}%</span>
       </div>
-      <Progress value={percentage} className="h-2" />
+      <Progress value={percentage} className={className || "h-2"} />
     </div>
   );
 }

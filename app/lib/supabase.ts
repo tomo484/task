@@ -18,7 +18,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 // デバッグ用: 接続確認関数
 export async function testSupabaseConnection() {
   try {
-    const { data, error } = await supabase.from('tasks').select('count');
+    const { error } = await supabase.from('tasks').select('count');
     if (error) {
       console.error('Supabase接続エラー:', error);
       return false;

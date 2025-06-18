@@ -10,31 +10,7 @@ interface KanbanColumnProps {
   tasks: Task[];
 }
 
-export function KanbanColumn({ status, tasks }: KanbanColumnProps) {
-  const getStatusTitle = () => {
-    switch (status) {
-      case 'todo':
-        return 'To Do';
-      case 'in_progress':
-        return 'In Progress';
-      case 'done':
-        return 'Done';
-      default:
-        return status;
-    }
-  };
-
-  const getStatusColor = () => {
-    switch (status) {
-      case 'todo':
-        return 'text-[#0D141C]';
-      case 'in_progress':
-      case 'done':
-        return 'text-[#4A739C]';
-      default:
-        return 'text-[#4A739C]';
-    }
-  };
+export function KanbanColumn({ tasks }: KanbanColumnProps) {
 
   return (
     <div className="flex-1 flex flex-col">
