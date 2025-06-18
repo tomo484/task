@@ -1,0 +1,766 @@
+# Today's Tasks 画面仕様書
+
+## 概要
+Node 12-3 (Today's Tasks画面) のFigmaデザインを基にした、画面全体の詳細な仕様書
+
+---
+
+## 1. 画面基本情報
+
+### 1-1. 画面サイズ・レスポンシブ対応
+```css
+screen_dimensions: {
+  desktop_width: 1280px (固定)
+  desktop_height: auto (コンテンツに応じて可変)
+  min_width: 768px
+  max_width: 1920px
+}
+
+responsive_breakpoints: {
+  mobile: 320px ~ 767px
+  tablet: 768px ~ 1023px
+  desktop: 1024px ~ 1920px
+}
+```
+
+### 1-2. 全体レイアウト構造
+```css
+page_layout: {
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+  background: #F7FAFC
+}
+
+main_container: {
+  display: flex
+  flex-direction: column
+  flex: 1
+  max-width: 1280px
+  margin: 0 auto
+  background: #FFFFFF
+}
+```
+
+---
+
+## 2. ヘッダーセクション仕様
+
+### 2-1. グローバルヘッダー
+```css
+global_header: {
+  position: sticky
+  top: 0
+  z-index: 100
+  background: #FFFFFF
+  border-bottom: 1px solid #E5E8EB
+  padding: 12px 40px
+  height: 64px (固定)
+}
+
+header_content: {
+  display: flex
+  justify-content: space-between
+  align-items: center
+  max-width: 1200px
+  margin: 0 auto
+}
+```
+
+### 2-2. ロゴ・ブランディングエリア
+```css
+logo_area: {
+  display: flex
+  align-items: center
+  gap: 16px
+  flex-shrink: 0
+}
+
+logo_specifications: {
+  icon_size: 16px × 16px
+  title_font: Lexend, 700, 18px/23px
+  title_color: #0D141C
+  hover_effect: none (ロゴは固定)
+}
+```
+
+### 2-3. プライマリナビゲーション
+```css
+primary_navigation: {
+  display: flex
+  align-items: center
+  gap: 36px
+  margin-left: 64px
+}
+
+navigation_items: [
+  "My Tasks" (current: active),
+  "Inbox",
+  "Projects"
+]
+
+navigation_item_specs: {
+  font: Lexend, 500, 14px/21px
+  color_default: #0D141C
+  color_hover: #0D80F2
+  color_active: #0D141C (bold)
+  transition: color 0.2s ease
+  cursor: pointer
+}
+```
+
+### 2-4. セカンダリアクション・プロフィールエリア
+```css
+secondary_actions: {
+  display: flex
+  align-items: center
+  gap: 32px
+  flex-shrink: 0
+}
+
+search_component: {
+  display: flex
+  background: #E8EDF5
+  border-radius: 8px
+  height: 40px
+  width: 280px (推奨)
+}
+
+search_input_specs: {
+  placeholder: "Search"
+  font: Lexend, 400, 16px/24px
+  color: #4A739C
+  padding: 8px 16px
+}
+
+action_buttons: {
+  notification_button: {
+    background: #E8EDF5
+    size: 40px × 40px
+    border-radius: 8px
+    icon_size: 24px × 24px
+    icon_color: #0D141C
+  }
+}
+
+profile_avatar: {
+  size: 40px × 40px
+  border-radius: 20px (円形)
+  background: image-fill
+  cursor: pointer
+}
+```
+
+---
+
+## 3. メインコンテンツセクション仕様
+
+### 3-1. コンテンツエリア全体
+```css
+content_area: {
+  padding: 20px 160px
+  background: #F7FAFC
+  flex: 1
+  min-height: calc(100vh - 64px)
+}
+
+content_wrapper: {
+  max-width: 960px
+  margin: 0 auto
+  display: flex
+  flex-direction: column
+  gap: 24px
+}
+```
+
+### 3-2. ページヘッダーセクション
+```css
+page_header: {
+  display: flex
+  justify-content: space-between
+  align-items: flex-start
+  padding: 16px
+  background: transparent
+}
+
+page_title_area: {
+  display: flex
+  flex-direction: column
+  gap: 12px
+  width: 288px
+}
+
+page_title_specs: {
+  main_title: {
+    text: "Today's Tasks"
+    font: Lexend, 700, 32px/40px
+    color: #0D141C
+    margin-bottom: 12px
+  }
+  
+  subtitle: {
+    text: "Manage your tasks for today"
+    font: Lexend, 400, 14px/21px
+    color: #4A739C
+  }
+}
+```
+
+### 3-3. プログレス表示セクション
+```css
+progress_section: {
+  display: flex
+  flex-direction: column
+  gap: 12px
+  padding: 16px
+  background: transparent
+}
+
+progress_header: {
+  display: flex
+  justify-content: space-between
+  align-items: center
+}
+
+progress_label_specs: {
+  text: "Overall Progress"
+  font: Lexend, 500, 16px/24px
+  color: #0D141C
+}
+
+progress_value_specs: {
+  text: "60%" (動的)
+  font: Lexend, 400, 14px/21px
+  color: #0D141C
+}
+
+progress_bar_specs: {
+  width: 557px
+  height: 8px
+  background: #CFDBE8
+  border-radius: 4px
+  fill_color: #0D80F2
+  fill_percentage: 60% (動的)
+  animation: width 0.3s ease
+}
+```
+
+### 3-4. タブナビゲーションセクション
+```css
+tab_navigation: {
+  display: flex
+  flex-direction: column
+  padding: 0px 0px 12px
+  border-bottom: 1px solid #CFDBE8
+}
+
+tab_list: {
+  display: flex
+  gap: 32px
+  padding: 0px 16px
+}
+
+tab_items: [
+  {
+    label: "Today",
+    state: "active",
+    icon: today-icon
+  },
+  {
+    label: "Weekly View", 
+    state: "inactive",
+    icon: weekly-icon
+  }
+]
+
+tab_item_specs: {
+  padding: 16px 0px 13px
+  border-bottom: 3px solid transparent
+  
+  active_state: {
+    text_color: #0D141C
+    text_weight: 700
+    border_color: #0D80F2
+  }
+  
+  inactive_state: {
+    text_color: #4A739C
+    text_weight: 700
+    border_color: #E5E8EB
+  }
+  
+  font: Lexend, 700, 14px/21px
+  transition: all 0.2s ease
+  cursor: pointer
+}
+```
+
+---
+
+## 4. タスクリストセクション仕様
+
+### 4-1. タスクリストコンテナ
+```css
+task_list_container: {
+  display: flex
+  flex-direction: column
+  gap: 8px
+  padding: 16px
+  background: transparent
+}
+
+task_list_header: {
+  display: flex
+  justify-content: space-between
+  align-items: center
+  margin-bottom: 16px
+}
+
+task_count_display: {
+  font: Lexend, 500, 16px/24px
+  color: #0D141C
+  text: "5 tasks today" (動的)
+}
+```
+
+### 4-2. 個別タスクカード仕様
+```css
+task_card: {
+  display: flex
+  justify-content: space-between
+  align-items: center
+  gap: 16px
+  padding: 8px 16px
+  background: #F7FAFC
+  border-radius: 8px
+  min-height: 64px
+  transition: background-color 0.2s ease
+}
+
+task_card:hover: {
+  background: #E8EDF5
+  transform: translateY(-1px)
+  box-shadow: 0 2px 8px rgba(13, 20, 28, 0.1)
+}
+
+task_icon_area: {
+  width: 48px
+  height: 48px
+  background: #E8EDF5
+  border-radius: 8px
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-shrink: 0
+}
+
+task_icon_specs: {
+  size: 24px × 24px
+  color: #0D141C
+  type: task-specific (study, club, other)
+}
+
+task_content_area: {
+  display: flex
+  flex-direction: column
+  justify-content: center
+  flex: 1
+  min-width: 0
+  gap: 2px
+}
+
+task_title_specs: {
+  font: Lexend, 500, 16px/24px
+  color: #0D141C
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+  max-width: 100%
+}
+
+task_meta_specs: {
+  font: Lexend, 400, 14px/21px
+  color: #4A739C
+  text_format: "Due: MM/DD" or "Category: XXX"
+}
+
+task_action_area: {
+  width: 24px
+  height: 24px
+  flex-shrink: 0
+  display: flex
+  justify-content: center
+  align-items: center
+}
+
+task_action_icon: {
+  size: 24px × 24px
+  color: #0D141C
+  cursor: pointer
+  transition: color 0.2s ease
+}
+
+task_action_icon:hover: {
+  color: #0D80F2
+}
+```
+
+---
+
+## 5. 下部タブナビゲーション仕様
+
+### 5-1. 下部ナビゲーションコンテナ
+```css
+bottom_navigation: {
+  position: fixed
+  bottom: 0
+  left: 0
+  right: 0
+  background: #FFFFFF
+  border-top: 1px solid #CFDBE8
+  padding: 0px 16px
+  height: 64px
+  z-index: 50
+}
+
+bottom_nav_content: {
+  display: flex
+  justify-content: stretch
+  align-items: stretch
+  height: 100%
+  max-width: 1280px
+  margin: 0 auto
+}
+```
+
+### 5-2. 下部タブアイテム仕様
+```css
+bottom_tab_items: [
+  {
+    label: "Today",
+    icon: "today-icon",
+    state: "active"
+  },
+  {
+    label: "Weekly View",
+    icon: "weekly-icon", 
+    state: "inactive"
+  }
+]
+
+bottom_tab_item: {
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  gap: 4px
+  padding: 10px 0px 7px
+  flex: 1
+  cursor: pointer
+  transition: all 0.2s ease
+}
+
+bottom_tab_icon: {
+  size: 24px × 24px
+  margin-bottom: 2px
+  
+  active_color: #0D141C
+  inactive_color: #4A739C
+  transition: color 0.2s ease
+}
+
+bottom_tab_text: {
+  font: Lexend, 700, 14px/21px
+  
+  active_color: #0D141C
+  inactive_color: #4A739C
+  transition: color 0.2s ease
+}
+```
+
+---
+
+## 6. インタラクション・アニメーション仕様
+
+### 6-1. ホバーエフェクト
+```css
+hover_effects: {
+  navigation_items: {
+    property: color
+    duration: 0.2s ease
+    from: #0D141C
+    to: #0D80F2
+  }
+  
+  task_cards: {
+    properties: [background-color, transform, box-shadow]
+    duration: 0.2s ease
+    background_from: #F7FAFC
+    background_to: #E8EDF5
+    transform: translateY(-1px)
+    shadow: 0 2px 8px rgba(13, 20, 28, 0.1)
+  }
+  
+  action_buttons: {
+    property: color
+    duration: 0.2s ease
+    from: #0D141C
+    to: #0D80F2
+  }
+}
+```
+
+### 6-2. フォーカス状態
+```css
+focus_states: {
+  interactive_elements: {
+    outline: 2px solid #0D80F2
+    outline_offset: 2px
+    border_radius: 4px
+  }
+  
+  tab_navigation: {
+    focus_visible: {
+      outline: 2px solid #0D80F2
+      outline_offset: -2px
+    }
+  }
+}
+```
+
+### 6-3. アクティブ状態
+```css
+active_states: {
+  buttons: {
+    transform: scale(0.98)
+    transition: transform 0.1s ease
+  }
+  
+  tabs: {
+    border_bottom: 3px solid #0D80F2
+    color: #0D141C
+    font_weight: 700
+  }
+}
+```
+
+---
+
+## 7. レスポンシブデザイン仕様
+
+### 7-1. モバイル (320px ~ 767px)
+```css
+mobile_layout: {
+  content_padding: 16px
+  header_padding: 12px 16px
+  
+  navigation: {
+    display: none (ハンバーガーメニューに変更)
+  }
+  
+  search: {
+    width: 100%
+    margin-top: 8px
+  }
+  
+  task_cards: {
+    padding: 12px 16px
+    flex_direction: column
+    align_items: flex-start
+    gap: 12px
+  }
+  
+  progress_bar: {
+    width: 100%
+  }
+}
+```
+
+### 7-2. タブレット (768px ~ 1023px)
+```css
+tablet_layout: {
+  content_padding: 32px
+  header_padding: 12px 32px
+  
+  navigation: {
+    gap: 24px
+  }
+  
+  task_cards: {
+    padding: 12px 16px
+  }
+  
+  progress_bar: {
+    width: 100%
+    max_width: 557px
+  }
+}
+```
+
+---
+
+## 8. アクセシビリティ仕様
+
+### 8-1. キーボードナビゲーション
+```css
+keyboard_navigation: {
+  tab_order: [
+    "skip-link",
+    "logo",
+    "navigation-items",
+    "search-input", 
+    "action-buttons",
+    "tab-navigation",
+    "task-items",
+    "bottom-navigation"
+  ]
+  
+  tab_visible_focus: {
+    outline: 2px solid #0D80F2
+    outline_offset: 2px
+  }
+}
+```
+
+### 8-2. スクリーンリーダー対応
+```html
+aria_labels: {
+  main_navigation: "メインナビゲーション"
+  search_input: "タスクを検索"
+  tab_navigation: "表示切り替え"
+  task_list: "今日のタスク一覧"
+  bottom_navigation: "下部ナビゲーション"
+}
+
+semantic_structure: {
+  header: <header role="banner">
+  main: <main role="main">
+  navigation: <nav role="navigation">
+  search: <search role="search">
+  tablist: <div role="tablist">
+  tab: <button role="tab">
+  tabpanel: <div role="tabpanel">
+}
+```
+
+### 8-3. カラーコントラスト
+```css
+contrast_ratios: {
+  primary_text: "#0D141C on #FFFFFF" (ratio: 15.8:1) ✅
+  secondary_text: "#4A739C on #FFFFFF" (ratio: 4.7:1) ✅
+  primary_blue: "#0D80F2 on #FFFFFF" (ratio: 4.5:1) ✅
+  button_text: "#0D141C on #E8EDF5" (ratio: 12.1:1) ✅
+}
+```
+
+---
+
+## 9. パフォーマンス仕様
+
+### 9-1. 読み込み時間目標
+```css
+performance_targets: {
+  first_contentful_paint: < 1.5s
+  largest_contentful_paint: < 2.5s
+  cumulative_layout_shift: < 0.1
+  first_input_delay: < 100ms
+}
+```
+
+### 9-2. 最適化対象
+```css
+optimization_areas: {
+  images: {
+    format: "WebP, AVIF"
+    lazy_loading: true
+    responsive_images: true
+  }
+  
+  fonts: {
+    preload: "Lexend (400, 500, 700)"
+    display: "swap"
+    subset: "latin"
+  }
+  
+  css: {
+    critical_css: "above-the-fold styles"
+    minification: true
+    compression: "gzip/brotli"
+  }
+}
+```
+
+---
+
+## 10. 状態管理・データフロー
+
+### 10-1. 画面状態
+```typescript
+screen_states: {
+  loading: "初期データ読み込み中"
+  empty: "タスクが存在しない"
+  populated: "タスクデータ表示中"
+  error: "エラー状態"
+}
+```
+
+### 10-2. インタラクション状態
+```typescript
+interaction_states: {
+  tab_active: "today" | "weekly"
+  task_selected: Task["id"] | null
+  search_query: string
+  filter_applied: FilterType[]
+}
+```
+
+---
+
+## 11. 実装優先度
+
+### 11-1. Phase 1 (必須実装)
+- [x] グローバルヘッダー
+- [x] ページヘッダー  
+- [x] プログレス表示
+- [x] タブナビゲーション
+- [x] タスクリスト表示
+
+### 11-2. Phase 2 (重要実装)
+- [ ] 下部タブナビゲーション
+- [ ] 検索機能
+- [ ] レスポンシブ対応
+- [ ] ホバーエフェクト
+
+### 11-3. Phase 3 (拡張実装)
+- [ ] キーボードナビゲーション
+- [ ] アニメーション
+- [ ] パフォーマンス最適化
+- [ ] アクセシビリティ完全対応
+
+---
+
+## 12. 品質保証チェックリスト
+
+### 12-1. デザイン準拠性
+- [ ] Figmaデザインとの視覚的一致 (100%)
+- [ ] カラーパレット正確性
+- [ ] タイポグラフィ準拠性
+- [ ] スペーシング・サイズ精度
+
+### 12-2. 機能性
+- [ ] 全てのインタラクション動作確認
+- [ ] データ表示・更新正常性
+- [ ] エラーハンドリング
+- [ ] パフォーマンス基準達成
+
+### 12-3. アクセシビリティ
+- [ ] キーボード操作完全対応
+- [ ] スクリーンリーダー対応
+- [ ] カラーコントラスト基準達成
+- [ ] セマンティックHTML構造
+
+### 12-4. レスポンシブ
+- [ ] 全ブレイクポイント動作確認
+- [ ] タッチデバイス最適化
+- [ ] 横向き・縦向き対応
+- [ ] 高解像度ディスプレイ対応 

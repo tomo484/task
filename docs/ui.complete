@@ -1,0 +1,633 @@
+# UI コンポーネント詳細仕様書
+
+## 概要
+Node 12-3 (Today's Tasks画面) のFigmaデザインを基にした、各UIコンポーネントの詳細仕様書
+
+---
+
+## 1. ヘッダーコンポーネント (Header)
+
+### 全体仕様
+```css
+container: {
+  width: 1280px (固定)
+  height: auto (hug)
+  background: #FFFFFF
+  border-bottom: 1px solid #E5E8EB
+  padding: 12px 40px
+  display: flex
+  justify-content: space-between
+  align-items: center
+}
+```
+
+### 1-1. ロゴセクション
+```css
+logo_container: {
+  display: flex
+  align-items: center
+  gap: 16px
+}
+
+logo_icon: {
+  width: 16px
+  height: 16px
+  color: #0D141C
+}
+
+logo_text: {
+  font-family: Lexend
+  font-weight: 700
+  font-size: 18px
+  line-height: 23px (1.2777777777777777em)
+  color: #0D141C
+  text: "TaskMaster"
+}
+```
+
+### 1-2. ナビゲーションセクション
+```css
+navigation_container: {
+  display: flex
+  align-items: center
+  gap: 36px
+}
+
+navigation_item: {
+  font-family: Lexend
+  font-weight: 500
+  font-size: 14px
+  line-height: 21px (1.5em)
+  color: #0D141C
+  cursor: pointer
+  transition: color 0.2s ease
+}
+
+navigation_item:hover: {
+  color: #0D80F2
+}
+```
+
+### 1-3. 右側アクションセクション
+```css
+actions_container: {
+  display: flex
+  align-items: center
+  gap: 32px
+}
+
+search_container: {
+  display: flex
+  background: #E8EDF5
+  border-radius: 8px
+  overflow: hidden
+}
+
+search_icon_section: {
+  background: #E8EDF5
+  border-radius: 8px 0px 0px 8px
+  padding: 0px 0px 0px 16px
+  display: flex
+  align-items: center
+  height: 40px
+}
+
+search_icon: {
+  width: 24px
+  height: 24px
+  color: #4A739C
+}
+
+search_input_section: {
+  background: #E8EDF5
+  border-radius: 0px 8px 8px 0px
+  padding: 8px 16px 8px 8px
+  display: flex
+  align-items: center
+  flex: 1
+}
+
+search_input: {
+  font-family: Lexend
+  font-weight: 400
+  font-size: 16px
+  line-height: 24px (1.5em)
+  color: #4A739C
+  background: transparent
+  border: none
+  outline: none
+  placeholder: "Search"
+}
+
+action_button: {
+  background: #E8EDF5
+  border-radius: 8px
+  height: 40px
+  padding: 0px 10px
+  display: flex
+  align-items: center
+  gap: 8px
+  cursor: pointer
+}
+
+profile_avatar: {
+  width: 40px
+  height: 40px
+  border-radius: 20px
+  background: image-fill
+  cursor: pointer
+}
+```
+
+---
+
+## 2. ページヘッダーコンポーネント (PageHeader)
+
+### 全体仕様
+```css
+page_header_container: {
+  display: flex
+  justify-content: space-between
+  align-self: stretch
+  flex-wrap: wrap
+  gap: 12px
+  padding: 16px
+}
+```
+
+### 2-1. タイトルセクション
+```css
+title_section: {
+  display: flex
+  flex-direction: column
+  gap: 12px
+  width: 288px (固定)
+}
+
+main_title: {
+  font-family: Lexend
+  font-weight: 700
+  font-size: 32px
+  line-height: 40px (1.25em)
+  color: #0D141C
+  text: "Today's Tasks"
+}
+
+subtitle: {
+  font-family: Lexend
+  font-weight: 400
+  font-size: 14px
+  line-height: 21px (1.5em)
+  color: #4A739C
+  text: "Manage your tasks for today"
+}
+```
+
+---
+
+## 3. プログレスセクションコンポーネント (ProgressSection)
+
+### 全体仕様
+```css
+progress_container: {
+  display: flex
+  flex-direction: column
+  align-self: stretch
+  gap: 12px
+  padding: 16px
+}
+```
+
+### 3-1. プログレスヘッダー
+```css
+progress_header: {
+  display: flex
+  justify-content: space-between
+  align-self: stretch
+  gap: 24px
+}
+
+progress_label: {
+  font-family: Lexend
+  font-weight: 500
+  font-size: 16px
+  line-height: 24px (1.5em)
+  color: #0D141C
+  text: "Overall Progress"
+}
+
+progress_percentage: {
+  font-family: Lexend
+  font-weight: 400
+  font-size: 14px
+  line-height: 21px (1.5em)
+  color: #0D141C
+  height: 24px (固定)
+  text: "60%"
+}
+```
+
+### 3-2. プログレスバー
+```css
+progress_bar_container: {
+  background: #CFDBE8
+  border-radius: 4px
+  width: 557px (固定)
+  height: 8px
+  overflow: hidden
+}
+
+progress_bar_fill: {
+  background: #0D80F2
+  border-radius: 4px
+  height: 8px
+  width: 60% (動的)
+  transition: width 0.3s ease
+}
+```
+
+---
+
+## 4. タブナビゲーションコンポーネント (TabNavigation)
+
+### 全体仕様
+```css
+tab_container: {
+  display: flex
+  flex-direction: column
+  align-self: stretch
+  padding: 0px 0px 12px
+}
+
+tab_header: {
+  border-bottom: 1px solid #CFDBE8
+  padding: 0px 16px
+}
+
+tab_list: {
+  display: flex
+  align-self: stretch
+  gap: 32px
+}
+```
+
+### 4-1. タブアイテム
+```css
+tab_item: {
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  padding: 16px 0px 13px
+  border-bottom: 3px solid transparent
+  cursor: pointer
+  transition: all 0.2s ease
+}
+
+tab_item.active: {
+  border-bottom-color: #0D80F2
+}
+
+tab_item.inactive: {
+  border-bottom-color: #E5E8EB
+}
+
+tab_text.active: {
+  font-family: Lexend
+  font-weight: 700
+  font-size: 14px
+  line-height: 21px (1.5em)
+  color: #0D141C
+}
+
+tab_text.inactive: {
+  font-family: Lexend
+  font-weight: 700
+  font-size: 14px
+  line-height: 21px (1.5em)
+  color: #4A739C
+}
+```
+
+---
+
+## 5. タスクカードコンポーネント (TaskCard)
+
+### 全体仕様
+```css
+task_card: {
+  background: #F7FAFC
+  display: flex
+  justify-content: space-between
+  align-items: center
+  align-self: stretch
+  gap: 16px
+  padding: 8px 16px
+  border-radius: 8px (推奨)
+  transition: background-color 0.2s ease
+}
+
+task_card:hover: {
+  background: #E8EDF5
+}
+```
+
+### 5-1. タスクアイコンセクション
+```css
+task_icon_container: {
+  background: #E8EDF5
+  border-radius: 8px
+  width: 48px (固定)
+  height: 48px (固定)
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-shrink: 0
+}
+
+task_icon: {
+  width: 24px
+  height: 24px
+  color: #0D141C
+}
+```
+
+### 5-2. タスク情報セクション
+```css
+task_info_container: {
+  display: flex
+  flex-direction: column
+  justify-content: center
+  flex: 1
+  min-width: 0
+}
+
+task_title: {
+  font-family: Lexend
+  font-weight: 500
+  font-size: 16px
+  line-height: 24px (1.5em)
+  color: #0D141C
+  margin-bottom: 2px
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+}
+
+task_due_date: {
+  font-family: Lexend
+  font-weight: 400
+  font-size: 14px
+  line-height: 21px (1.5em)
+  color: #4A739C
+}
+```
+
+### 5-3. タスクアクションセクション
+```css
+task_action_container: {
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 24px (固定)
+  flex-shrink: 0
+}
+
+task_action_icon: {
+  width: 24px
+  height: 24px
+  color: #0D141C
+  cursor: pointer
+  transition: color 0.2s ease
+}
+
+task_action_icon:hover: {
+  color: #0D80F2
+}
+```
+
+---
+
+## 6. 下部タブナビゲーションコンポーネント (BottomTabNavigation)
+
+### 全体仕様
+```css
+bottom_tab_container: {
+  display: flex
+  justify-content: stretch
+  align-items: stretch
+  align-self: stretch
+  border-top: 1px solid #CFDBE8
+}
+
+bottom_tab_wrapper: {
+  display: flex
+  justify-content: stretch
+  align-items: stretch
+  align-self: stretch
+  padding: 0px 16px
+}
+```
+
+### 6-1. 下部タブアイテム
+```css
+bottom_tab_item: {
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  gap: 4px
+  padding: 10px 0px 7px
+  flex: 1
+  cursor: pointer
+  transition: all 0.2s ease
+}
+
+bottom_tab_icon: {
+  width: 24px
+  height: 24px
+  margin-bottom: 2px
+}
+
+bottom_tab_icon.active: {
+  color: #0D141C
+}
+
+bottom_tab_icon.inactive: {
+  color: #4A739C
+}
+
+bottom_tab_text.active: {
+  font-family: Lexend
+  font-weight: 700
+  font-size: 14px
+  line-height: 21px (1.5em)
+  color: #0D141C
+}
+
+bottom_tab_text.inactive: {
+  font-family: Lexend
+  font-weight: 700
+  font-size: 14px
+  line-height: 21px (1.5em)
+  color: #4A739C
+}
+```
+
+---
+
+## 7. カラーパレット定義
+
+### プライマリカラー
+```css
+:root {
+  --color-primary-text: #0D141C;
+  --color-secondary-text: #4A739C;
+  --color-primary-blue: #0D80F2;
+  
+  --color-background-main: #FFFFFF;
+  --color-background-content: #F7FAFC;
+  --color-background-card: #E8EDF5;
+  
+  --color-border-light: #E5E8EB;
+  --color-border-medium: #CFDBE8;
+  
+  --color-progress-background: #CFDBE8;
+  --color-progress-fill: #0D80F2;
+}
+```
+
+---
+
+## 8. タイポグラフィ定義
+
+### フォントファミリー
+```css
+:root {
+  --font-family-primary: 'Lexend', sans-serif;
+}
+```
+
+### フォントスタイル
+```css
+/* 大見出し */
+.text-heading-large {
+  font-family: var(--font-family-primary);
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+/* 中見出し */
+.text-heading-medium {
+  font-family: var(--font-family-primary);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
+}
+
+/* 本文（太字） */
+.text-body-bold {
+  font-family: var(--font-family-primary);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+/* 本文（中） */
+.text-body-medium {
+  font-family: var(--font-family-primary);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* 本文（標準） */
+.text-body-regular {
+  font-family: var(--font-family-primary);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* 小文字 */
+.text-small {
+  font-family: var(--font-family-primary);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+/* ナビゲーション */
+.text-navigation {
+  font-family: var(--font-family-primary);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+}
+```
+
+---
+
+## 9. スペーシング定義
+
+### 基本スペーシング
+```css
+:root {
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-2xl: 24px;
+  --spacing-3xl: 32px;
+  --spacing-4xl: 40px;
+}
+```
+
+---
+
+## 10. ボーダーラディウス定義
+
+### 基本ラディウス
+```css
+:root {
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 50%;
+}
+```
+
+---
+
+## 11. アニメーション定義
+
+### トランジション
+```css
+:root {
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.2s ease;
+  --transition-slow: 0.3s ease;
+}
+```
+
+### ホバーエフェクト
+```css
+.hover-lift {
+  transition: transform var(--transition-normal);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.hover-color {
+  transition: color var(--transition-normal);
+}
+
+.hover-background {
+  transition: background-color var(--transition-normal);
+}
+``` 
