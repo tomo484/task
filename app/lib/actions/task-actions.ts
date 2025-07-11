@@ -1,8 +1,8 @@
-'use server'
+// Next.js Static Export用の設定
 
 import { supabase } from '../supabase'
 import { TaskInput, Task, TaskStatus } from '../types'
-import { revalidatePath } from 'next/cache'
+// import { revalidatePath } from 'next/cache'  // 静的エクスポートでは不要
 
 // 今日のタスク取得
 export async function getTodayTasks(): Promise<Task[]> {
@@ -116,8 +116,8 @@ export async function createTask(taskInput: TaskInput): Promise<Task> {
     }
     
     // ページキャッシュを無効化
-    revalidatePath('/')
-    revalidatePath('/weekly')
+    // revalidatePath('/') // 静的エクスポートでは不要
+    // revalidatePath('/weekly') // 静的エクスポートでは不要
     
     return data
   } catch (error) {
@@ -143,8 +143,8 @@ export async function updateTaskStatus(taskId: string, status: TaskStatus): Prom
     }
     
     // ページキャッシュを無効化
-    revalidatePath('/')
-    revalidatePath('/weekly')
+    // revalidatePath('/') // 静的エクスポートでは不要
+    // revalidatePath('/weekly') // 静的エクスポートでは不要
   } catch (error) {
     console.error('updateTaskStatus エラー:', error)
     throw error
@@ -165,8 +165,8 @@ export async function deleteTask(taskId: string): Promise<void> {
     }
     
     // ページキャッシュを無効化
-    revalidatePath('/')
-    revalidatePath('/weekly')
+    // revalidatePath('/') // 静的エクスポートでは不要
+    // revalidatePath('/weekly') // 静的エクスポートでは不要
   } catch (error) {
     console.error('deleteTask エラー:', error)
     throw error
@@ -192,8 +192,8 @@ export async function updateTask(taskId: string, taskInput: Partial<TaskInput>):
     }
     
     // ページキャッシュを無効化
-    revalidatePath('/')
-    revalidatePath('/weekly')
+    // revalidatePath('/') // 静的エクスポートでは不要
+    // revalidatePath('/weekly') // 静的エクスポートでは不要
     
     return data
   } catch (error) {
