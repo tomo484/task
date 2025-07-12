@@ -12,8 +12,6 @@ import { WeeklyTasksSection } from '@/components/ui/WeeklyTasksSection';
 import { Task, TaskInput, TaskStatus } from '@/lib/types';
 import { getAllTasksSorted, getWeeklyTasks, createTask, updateTaskStatus, deleteTask } from '@/lib/actions/task-actions';
 import { calculateProgress, calculateWeeklyData } from '@/lib/utils';
-import { EnvironmentDebug } from '@/components/debug/EnvironmentDebug';
-import { PerformanceTest } from '@/components/debug/PerformanceTest';
 
 export default function HomePage() {
   // 状態管理
@@ -167,12 +165,6 @@ export default function HomePage() {
       <main className="flex-1 min-h-[calc(100vh-64px)] pb-16">
         <div className="py-5 px-40 bg-[#F7FAFC]">
           <div className="max-w-[960px] mx-auto flex flex-col gap-6">
-            
-            {/* デバッグ情報 */}
-            <EnvironmentDebug />
-            
-            {/* パフォーマンステスト */}
-            <PerformanceTest />
             
             {/* ページヘッダー */}
             <PageHeader
