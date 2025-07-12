@@ -1,8 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Azure Static Web Apps最適化設定
-  output: 'export',  // 静的エクスポートを有効化
+  // Azure Static Web Apps最適化設定 // 静的エクスポートを有効化
   trailingSlash: true,
   skipTrailingSlashRedirect: true,
   images: {

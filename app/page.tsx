@@ -13,6 +13,7 @@ import { Task, TaskInput, TaskStatus } from '@/lib/types';
 import { getAllTasksSorted, getWeeklyTasks, createTask, updateTaskStatus, deleteTask } from '@/lib/actions/task-actions';
 import { calculateProgress, calculateWeeklyData } from '@/lib/utils';
 import { EnvironmentDebug } from '@/components/debug/EnvironmentDebug';
+import { PerformanceTest } from '@/components/debug/PerformanceTest';
 
 export default function HomePage() {
   // 状態管理
@@ -169,6 +170,9 @@ export default function HomePage() {
             
             {/* デバッグ情報 */}
             <EnvironmentDebug />
+            
+            {/* パフォーマンステスト */}
+            <PerformanceTest />
             
             {/* ページヘッダー */}
             <PageHeader
