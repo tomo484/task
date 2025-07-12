@@ -49,8 +49,8 @@ jobs:
           github_id_token: ${{ steps.idtoken.outputs.result }}
           ###### End of Repository/Build Configurations ######
         env:
-          NEXT_PUBLIC_SUPABASE_URL: "https://kchzrxxmmnhcpxicrlvx.supabase.co"
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtjaHpyeHhtbW5oY3B4aWNybHZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk2NDgwNDAsImV4cCI6MjA2NTIyNDA0MH0.JGzPES6LOHytze3nsAlVM0pLnFXE7UZWs81T28XKJfY"
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
           NEXT_PUBLIC_APP_URL: "https://white-forest-06f3eaf00.1.azurestaticapps.net"
           NEXT_PUBLIC_ENVIRONMENT: "production"
 
